@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BlogFilterRequest;
 use App\Http\Requests\PostFormRequest;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,9 +15,13 @@ use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('blog.index', ["posts" => Post::orderByDesc('id')->paginate(4)]);
+        $posts = Post::orderByDesc('id')->with("category", 'tags');
+        if ($request->input("category_id")) {
+            $posts = $posts->where("category_id", $request->input("category_id"));
+        }
+        return view('blog.index', ["posts" => $posts->paginate(4), "title" => "Acceuil du blog"]);
     }
 
     public function showWithId(string $slug, Post $post)
@@ -34,7 +40,7 @@ class BlogController extends Controller
     public function create(): View
     {
         $post = new Post();
-        return view('blog.create', ['post' => $post]);
+        return view('blog.create', ['post' => $post, 'categories' => Category::select('id', 'name')->get(), 'tags' => Tag::select('id', 'name')->get()]);
     }
 
     public function store(PostFormRequest $request)
@@ -45,12 +51,13 @@ class BlogController extends Controller
 
     public function edit(Post $post)
     {
-        return view('blog.edit', ['post' => $post]);
+        return view('blog.edit', ['post' => $post, 'categories' => Category::select('id', 'name')->get(), 'tags' => Tag::select('id', 'name')->get()]);
     }
 
     public function update(Post $post, PostFormRequest $request)
     {
         $post->update($request->validated());
+        $post->tags()->sync($request->validated('tags_id'));
         return redirect()->route('blog.show.id', ['slug' => $post->slug, 'post' => $post->id])->with('success', 'L\'arcticle a bien été Modifié');
 
     }

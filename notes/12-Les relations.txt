@@ -1,0 +1,12 @@
+Formation: Découverte de laravel 10
+Video12: Les relations
+
+
+                        #Notes importantes:
+#
+                        #Mots clé:
+#En cas de relation n à n;
+    -detach(<id>) : detacher un model d'un autre;
+        #Ex: $post->tags()->detach(1);
+    -attach(<id>) : attache un model à un autre;
+    -sync([<id01>, <id02>, ...]) : syncrhonise les relations avec les nouvelles clés primaires;

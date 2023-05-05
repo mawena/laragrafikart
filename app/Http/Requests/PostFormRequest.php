@@ -26,7 +26,9 @@ class PostFormRequest extends FormRequest
         return [
             'title' => ['required', 'min:4', Rule::unique('posts')->ignore($this->route()->parameter('post'))],
             'slug' => ['required', 'min:4', 'regex:/^[0-9a-z\-]+$/'],
-            'content' => ['required', 'min:8']
+            'content' => ['required', 'min:8'],
+            'category_id' => ['required', 'exists:categories,id'],
+            'tags_id' => ['required', 'array', 'exists:tags,id']
         ];
     }
 
