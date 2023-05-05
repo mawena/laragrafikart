@@ -11,6 +11,13 @@
                     <a @class(['nav-link', 'active' => str_starts_with($routeName, 'blog.')]) href="{{ route('blog.index') }}">Blog
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a @class([
+                        'nav-link',
+                        'active' => str_starts_with($routeName, 'blog.create'),
+                    ]) href="{{ route('blog.create') }}">Créer
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

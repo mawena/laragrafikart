@@ -10,9 +10,7 @@
             <p>{{ $post->content }}</p>
             <p>
                 <a href="{{ route('blog.show.id', ['slug' => $post->slug, 'post' => $post->id]) }}"
-                    class="btn btn-primary">Lire
-                    la
-                    suite</a>
+                    class="btn btn-primary">Lire plus ...</a>
             </p>
         </article>
     @endforeach
