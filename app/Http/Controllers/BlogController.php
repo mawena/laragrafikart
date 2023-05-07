@@ -7,8 +7,11 @@ use App\Http\Requests\PostFormRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
+use Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -18,9 +21,6 @@ class BlogController extends Controller
     public function index(Request $request): View
     {
         $posts = Post::orderByDesc('id')->with("category", 'tags');
-        if ($request->input("category_id")) {
-            $posts = $posts->where("category_id", $request->input("category_id"));
-        }
         return view('blog.index', ["posts" => $posts->paginate(4), "title" => "Acceuil du blog"]);
     }
 

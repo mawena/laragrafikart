@@ -3,6 +3,5 @@
 @section('title', 'Modifier un article')
 
 @section('content')
-    <h1>Modifiction de l'article {{ $post->title }}</h1>
-    @include('blog.form')
+    @include('blog.form', ['title' => "Modifiction de l'article $post->title"])
 @endsection

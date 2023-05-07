@@ -1,0 +1,30 @@
+Formation: Découverte de laravel 10
+Video12: Authentification
+
+                        #Notes importantes:
+#Le helpers Auth permet de gérer l'authentification des users;
+#La fonction global session() permet d'accéder à la session;
+#La fonction global redirect() permet d'effectuer toute sorte de redirection;
+#La fonction global route() permet d'acceder aux route à leurs outils;
+#La fonction global to_route() permet d'effectuer toute sorte de redirection;
+    #Il prend en paramètre le nom de la route tandis que redirect() prends une route;
+        #Ex:
+            -to_route('blog.index');
+            -redirect()->route('blog.index');
+#La directive @auth ... @endauth permet de définir du code blade à executer quand l'utilisateur est connecté;
+#La directive @guest ... @endguest est l'inverse de la directive @auth;
+#Les middlewares sont des intermediares qui se placent entre les controllers et les requetes et permettent de faire diverses vérification ou opérations;
+#Le middleware auth permet d'autoriser que l'utilisateur connecté;
+#Le middleware guest permet d'autoriser le passage que pour les non connecté;
+
+                        #Mots clé:
+#Auth::attempt(<credentials>) : vérifie l'identité d'un user et le connecte;
+    #credentials est un tableau avec les credentials(email et password) du user à vérifier;
+#Auth::login(<user>) : connecte l'utilisateur;
+#session()->regenerate() : regénérer la session;
+#redirect()->intended(<new route>) : redirige vers la route demandé à l'origine, sinon vers la route donnée en paramètre;
+#to_route()->withErros(<errors>) : redirige en indiquant les erreurs dans un tableau;
+    #->onlyInput(<value>) : indique les valeurs à retourné;
+        #par exemple on aimerais ne pas avoir à retourner le mot de passe lors d'un echec de connexion;
+#Auth::user() : retourne le user connecté ou null;
+#Auth::logout() : deconnecte le user;

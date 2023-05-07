@@ -2,16 +2,18 @@
 
 <footer class="text-center text-lg-start bg-primary">
     <div class="container d-flex justify-content-center py-5">
-        <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <button type="button" class="btn btn-outline-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
             <i class="fab fa-facebook-f"></i>
         </button>
-        <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <button type="button" class="btn btn-outline-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
             <i class="fab fa-youtube"></i>
         </button>
-        <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <button type="button" class="btn btn-outline-primary btn-lg btn-floating mx-2"
+            style="background-color: #54456b;">
             <i class="fab fa-instagram"></i>
         </button>
-        <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <button type="button" class="btn btn-outline-primary btn-lg btn-floating mx-2"
+            style="background-color: #54456b;">
             <i class="fab fa-twitter"></i>
         </button>
     </div>

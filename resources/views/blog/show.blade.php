@@ -21,8 +21,8 @@
         </p>
         <p>{{ $post->content }}</p>
         <p>
-            <a href="{{ route('blog.index') }}" class="btn btn-primary">Retour</a>
-            <a href="{{ route('blog.update', ['post' => $post->id]) }}" class="btn btn-primary">Editer</a>
+            <a href="{{ route('blog.index') }}" class="btn btn-outline-secondary">Retour</a>
+            <a href="{{ route('blog.update', ['post' => $post->id]) }}" class="btn btn-outline-primary">Editer</a>
         </p>
     </article>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,12 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::name("auth.")->controller(AuthController::class)->group(function () {
+    Route::get("/login", 'login')->name("login");
+    Route::post("/login", 'doLogin');
+    Route::delete("/logout", 'logout')->name('logout');
+});
 
 Route::prefix("/blog")->name("blog.")->controller(BlogController::class)->group(function () {
     Route::get("/", 'index')->name("index");
     Route::get("/new", "create")->name("create");
     Route::post("/new", 'store')->name("store");
-    Route::get("/{post}/edit", 'edit')->name('edit');
+    Route::get("/{post}/edit", 'edit')->name('edit')->middleware('auth');
     Route::patch("{post}/edit", 'update')->name("update");
 
 

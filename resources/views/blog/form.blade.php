@@ -1,10 +1,13 @@
-<form action="" method="post">
+<h1>{{ $title }}</h1>
+<a class="btn btn-outline-secondary" href="{{ url()->previous() }}">Retour</a>
+
+<form action="" method="post" class="vstack gap-3">
     @csrf
     @method($post->id ? 'PATCH' : 'POST')
     <div class="form-group">
         <label class="form-label mt-4" for="title">Titre</label>
-        <input type="text" name="title" id="title" placeholder="Mon titre" value="{{ old('title', $post->title) }}"
-            @class(['form-control', 'is-invalid' => $errors->get('title')])>
+        <input type="text" name="title" id="title" placeholder="Mon titre"
+            value="{{ old('title', $post->title) }}" @class(['form-control', 'is-invalid' => $errors->get('title')])>
         @error('title')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -53,13 +56,12 @@
     </div>
 
     <br>
-    <button class="btn btn-primary">
+    <button class="btn btn-outline-success">
         @if ($post->id)
             Modifier
         @else
             Enregistrer
         @endif
     </button>
-    <br>
-    <br>
 </form>
+<br>

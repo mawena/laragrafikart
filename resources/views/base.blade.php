@@ -40,7 +40,7 @@
         @yield('content')
     </div>
 
-    {{-- @include('parts.footer') --}}
+    @include('parts.footer')
 </body>
 
 </html>
